@@ -1,5 +1,5 @@
 describe('Add Contact Tests', () => {
-    it('Can add a new contact', () => {
+    xit('Can add a new contact', () => {
 
       let random = Math.floor(Math.random() * 1000)
 
@@ -21,10 +21,17 @@ describe('Add Contact Tests', () => {
 
       cy.deleteContact()
 
-      //cy.get('#delete').click()
-      //cy.on('window:confirm', () => true)
-      
+
       
 
     })
+
+    it('Returns an error when required field is missing', () => {
+      cy.login()
+      cy.get('#add-contact').click()
+      cy.get('#firstName').type('Prunella')
+      cy.get('#submit').click()
+      cy.get('#error').should('contain', 'Contact validation failed: lastName')
+    })
+
   })

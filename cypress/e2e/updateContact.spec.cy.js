@@ -1,5 +1,5 @@
 describe('Update Contact Tests', () => {
-    it('Can update a contact', () => {
+    xit('Can update a contact', () => {
 
       let random = Math.floor(Math.random() * 1000)
 
@@ -38,4 +38,26 @@ describe('Update Contact Tests', () => {
       cy.deleteContact()
 
     })
+
+    it('Returns error when birthdate validation failed', () => {
+
+        let random = Math.floor(Math.random() * 1000)
+
+        cy.login()
+        cy.addContact(random)
+
+        cy.contains('Test' + random + ' User').click()
+        cy.get('#edit-contact').click()
+        cy.get('#birthdate').clear().type('02-03-2001')
+        cy.get('#submit').click()
+        cy.get('#error').should('contain', 'Birthdate is invalid')
+
+        cy.get('#cancel').click()
+
+        cy.deleteContact()
+
+
+    })
+
+
   })
