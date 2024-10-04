@@ -1,9 +1,14 @@
 describe('Update Contact Tests', () => {
-    xit('Can update a contact', () => {
+
+    beforeEach(() => {
+        cy.login()
+    })
+
+    it('Can update a contact', () => {
 
       let random = Math.floor(Math.random() * 1000)
 
-      cy.login()
+      //cy.login()
       cy.addContact(random)
 
       cy.contains('Test' + random + ' User').click()
@@ -35,7 +40,7 @@ describe('Update Contact Tests', () => {
       cy.get('#postalCode').should('contain', '99901')
       cy.get('#country').should('contain', 'United States')
 
-      cy.deleteContact()
+      //cy.deleteContact()
 
     })
 
@@ -43,7 +48,7 @@ describe('Update Contact Tests', () => {
 
         let random = Math.floor(Math.random() * 1000)
 
-        cy.login()
+        //cy.login()
         cy.addContact(random)
 
         cy.contains('Test' + random + ' User').click()
@@ -54,9 +59,13 @@ describe('Update Contact Tests', () => {
 
         cy.get('#cancel').click()
 
+        //cy.deleteContact()
+
+
+    })
+
+    afterEach(() => {
         cy.deleteContact()
-
-
     })
 
 
